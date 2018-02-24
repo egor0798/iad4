@@ -43,12 +43,14 @@ export function getPoints(login){
         });
 }
 
-export function deletePoints(login) {
+export function deletePoints(login, r) {
     console.log("method delete");
-    return axios.delete('http://localhost:8080/'+ login + '/deletePoints')
+    console.log(login);
+    return axios.get('http://localhost:8080/'+ login + '/deletePoints')
         .then(response =>{
             console.log(response.status);
-        store.dispatch(deleteAllPoints());
+            store.dispatch(deleteAllPoints());
+            Canvas.updateCanvas(r);
     }).catch(error => {
         console.log("Ошибка: "+ error.toString());
     });

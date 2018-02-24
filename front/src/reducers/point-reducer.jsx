@@ -13,7 +13,7 @@ function points (state=initialState, action) {
             console.log("\nend\n");
             return state;
         case "DELETE_ALL":
-            state = initialState;
+            state.points.length = 0;
             console.log("getstate:");
             console.log(state.points);
             return state;

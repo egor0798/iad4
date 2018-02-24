@@ -26,7 +26,7 @@ public class MainController {
         return pointRepository.findPointsByUser(userRepository.findByLogin(login));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{login}/deletePoints")
+    @RequestMapping(method = RequestMethod.GET, value = "/{login}/deletePoints")
     public void delete(@PathVariable String login){
         System.out.println("\n\ndelete for " + login + "\n");
         pointRepository.deleteAllByUser(userRepository.findByLogin(login));

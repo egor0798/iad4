@@ -3,7 +3,6 @@ import store from '../store'
 export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
-
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }

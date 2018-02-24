@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import AppView from './appview';
+import AppView from '../component/appview';
 import Canvas from '../recourses/canvas';
 
 class Main extends Component {
@@ -20,7 +19,6 @@ class Main extends Component {
                 <body>
                 <tr><AppView/></tr>
                 <tr><Canvas/></tr>
-                <Link to="/" onClick={this.onPress}>Log Out</Link>
                 </body>
             </div>
         );}
