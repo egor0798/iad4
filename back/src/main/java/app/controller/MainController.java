@@ -42,6 +42,10 @@ public class MainController {
     }
 
     @GetMapping(value = "/{login}/delete")
+    public void deleteUser(@PathVariable String login){
+        pointRepository.deleteAllByUser(userRepository.findByLogin(login));
+        userRepository.deleteByLogin(login);
+    }
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/validate")

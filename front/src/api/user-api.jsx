@@ -36,9 +36,9 @@ export function register(login, password, history) {
 }
 
 
-export function deletePoints(login) {
+export function deleteUsr(login) {
     console.log("method delete");
-    return axios.delete('http://localhost:8080/'+ login + '/delete')
+    return axios.get('http://localhost:8080/'+ login + '/delete')
         .then(response =>{
             console.log(response.status);
             store.dispatch(deleteAllPoints());

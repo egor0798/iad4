@@ -19,7 +19,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany( mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Point> getPoints() {
         return points;
     }

@@ -1,6 +1,7 @@
 package app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ public class Point {
     @Column(name="res")
     private boolean result;
 
+    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore

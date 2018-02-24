@@ -3,6 +3,9 @@ import {connect} from "react-redux"
 import {Link} from 'react-router-dom';
 import {withRouter} from "react-router-dom";
 import PointForm from './PointForm';
+import {deleteUsr} from "../api/user-api";
+import store from "../store";
+import {exit} from "../actions/user-actions";
 
 class AppView extends React.Component {
     constructor(props){
@@ -17,7 +20,11 @@ class AppView extends React.Component {
     }
 
     deleteUser(){
-        //TODO сделать удаление юзера и подтверждение с всплывающим окном
+        deleteUsr(this.props.user);
+        this.props.history.push("/");
+        sessionStorage.setItem("loggedUser", "");
+        store.dispatch(exit());
+
     }
 
     onPress(){
