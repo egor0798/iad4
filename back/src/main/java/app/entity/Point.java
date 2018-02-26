@@ -22,7 +22,6 @@ public class Point {
     @Column(name="res")
     private boolean result;
 
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
