@@ -6,11 +6,17 @@ import {log_in} from "../actions/user-actions";
 import Canvas from "../recourses/canvas"
 
 export function addOnePoint(x,y,r,login){
+    var res;
+    var u = -x;
+    r=Number(r);
+    u=Number(u+r);
+    if ((y<=u && y>=0 && y<=r && x>=0 && x<=r)||(x*x+y*y<=(r/2)*(r/2) && x<=0 && y>=0)||(x<=0 && x>=-1*r && y<=0 && y>=-1*r)) res=true;
+    else res=false;
     const point = {
         x: x,
         y: y,
         r:r,
-        result:true
+        result:res
     };
     return axios.post('http://localhost:8080/'+login+"/addPoint", JSON.stringify(point),{headers:{'Content-Type': 'application/json',}})
         .then(response => {

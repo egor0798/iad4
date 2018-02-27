@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import './recourses/index.css'
 import store from './store';
 import router from './router';
 // TODO почитать что делает эта строчка

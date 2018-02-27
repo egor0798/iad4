@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppView from '../component/appview';
 import Canvas from '../recourses/canvas';
+import '../recourses/index.css'
 
 class Main extends Component {
     constructor(props){
@@ -14,12 +15,14 @@ class Main extends Component {
     render() {
         return (
             <div className="Main">
-                <header>
-                </header>
-                <body>
-                <tr><AppView/></tr>
-                <tr><Canvas/></tr>
-                </body>
+                <tr>
+                    <td id="left" width="300px">
+                        <AppView/>
+                    </td>
+                    <td>
+                        <Canvas/>
+                    </td>
+                </tr>
             </div>
         );}
     }

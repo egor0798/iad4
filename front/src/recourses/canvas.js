@@ -34,12 +34,27 @@ export default class Canvas extends React.Component {
             }
             x -= div.offsetLeft;
             y -= div.offsetTop;
+            var width = document.documentElement.clientWidth;
+            var k;
+            if (width>=1300){
+                k=1;
+            }
+            else if (width>=800){
+                k=2;
+            }
+            else if (width>=400){
+                k=10;
+            }
+            var diff = document.getElementById("left").offsetWidth;
+            x-=diff;
             var x1 = x;
             var y1 = y;
-            x=(x-500)/100;
-            y=(500-y)/100;
+            x=(x-500/k)/100/k;
+            y=(500/k-y)/100/k;
             let xfield = document.getElementById("xval");
             let yfield = document.getElementById("yval");
+            x=x*k*k;
+            y=y*k*k;
             if (Math.abs(x)<=5 && Math.abs(y)<=5){
                 xfield.value=x;
                 yfield.value=y;
@@ -72,38 +87,49 @@ export default class Canvas extends React.Component {
     }
 
     static updateCanvas(r) {
+        var width = document.documentElement.clientWidth;
+        var k;
+        if (width>1300){
+            k=1;
+        }
+        else if (width>800){
+            k=2;
+        }
+        else if (width>400){
+            k=10;
+        }
         let ctx = document.getElementById("myCanvas");
         var context = ctx.getContext('2d');
         context.fillStyle="#000";
         context.strokeStyle="#000";
         context.clearRect(0, 0, ctx.width, ctx.height);
         context.beginPath();
-        context.moveTo(0,500);
-        context.lineTo(1000,500);
-        context.moveTo(500,0);
-        context.lineTo(500,1000);
+        context.moveTo(0,500/k);
+        context.lineTo(1000/k,500/k);
+        context.moveTo(500/k,0);
+        context.lineTo(500/k,1000/k);
         context.stroke();
 
         context.fillStyle="#0000FF";
-        context.fillRect(500-100*r,500,100*r,100*r);
+        context.fillRect(500/k-100/k*r,500/k,100/k*r,100/k*r);
 
         context.beginPath();
-        context.moveTo(500+100*r,500);
-        context.lineTo(500,500-100*r);
-        context.lineTo(500,500);
-        context.lineTo(500+100*r,500);
+        context.moveTo(500/k+100/k*r,500/k);
+        context.lineTo(500/k,500/k-100/k*r);
+        context.lineTo(500/k,500/k);
+        context.lineTo(500/k+100/k*r,500/k);
         context.fillStyle="#0000FF";
         context.fill();
         context.stroke();
 
-        let radius = 50*r;
+        let radius = 50/k*r;
         let start = Math.PI;
         let end = 1.5* Math.PI;
         context.beginPath();
-        context.arc(500,500,radius,start,end,false);
-        context.moveTo(500-radius,500);
-        context.lineTo(500,500);
-        context.lineTo(500,500-radius);
+        context.arc(500/k,500/k,radius,start,end,false);
+        context.moveTo(500/k-radius,500/k);
+        context.lineTo(500/k,500/k);
+        context.lineTo(500/k,500/k-radius);
         context.fillStyle="#0000FF";
         context.fill();
         context.stroke();
@@ -119,8 +145,8 @@ export default class Canvas extends React.Component {
             u=Number(u+r);
             if ((y<=u && y>=0 && y<=r && x>=0 && x<=r)||(x*x+y*y<=(r/2)*(r/2) && x<=0 && y>=0)||(x<=0 && x>=-1*r && y<=0 && y>=-1*r)) res=true;
             else res=false;
-            x = x*100+500;
-            y = 500-y*100;
+            x = x*100/k+500/k;
+            y = 500/k-y*100/k;
             console.log(x);
             console.log(y);
             context.beginPath();
@@ -138,6 +164,17 @@ export default class Canvas extends React.Component {
         }
     }
     render() {
+        var width = document.documentElement.clientWidth;
+        var k;
+        if (width>1300){
+            k=1;
+        }
+        else if (width>800){
+            k=2;
+        }
+        else if (width>400){
+            k=10;
+        }
         return (
             <div>
                 <canvas ref="canvas" id="myCanvas" width={1000} height={1000}/>

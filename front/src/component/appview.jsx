@@ -6,20 +6,22 @@ import PointForm from './PointForm';
 import {deleteUsr} from "../api/user-api";
 import store from "../store";
 import {exit} from "../actions/user-actions";
+import '../recourses/index.css'
 
 class AppView extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.onPress = this.onPress.bind(this);
-        this.deleteUser =this.deleteUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
-    componentDidMount(){
-        if(this.props.user == ""){
+
+    componentDidMount() {
+        if (this.props.user == "") {
             this.props.history.push("/");
         }
     }
 
-    deleteUser(){
+    deleteUser() {
         deleteUsr(this.props.user);
         this.props.history.push("/");
         sessionStorage.setItem("loggedUser", "");
@@ -27,25 +29,21 @@ class AppView extends React.Component {
 
     }
 
-    onPress(){
+    onPress() {
         sessionStorage.setItem("loggedUser", "");
     }
+
     render() {
-        const style={
-            display:'inline-block',
-            marginLeft: '40px'
-        };
+        // const style = {
+        //     display: 'inline-block',
+        //     marginLeft: '40px'
+        // };
         return <div>
-            <tr>
-                <td>
-                    <Link to="/" onClick={this.onPress}>Log Out</Link>
-                </td>
-                <td style={style}/>
-                <td>
-                    <button onClick={this.deleteUser}>Delete user</button>
-                </td>
-            </tr>
-            <p/>
+            <td><Link to="/" onClick={this.onPress}>Log Out</Link></td>
+            <td><button onClick={this.deleteUser}>Delete user</button></td>
+            <br/>
+            <br/>
+            <br/>
             <PointForm/>
         </div>
 
